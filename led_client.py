@@ -21,6 +21,11 @@ def parseColor(message):
     message = message.split(', ')
     return message
 
+def parseBrightness(message) -> int:
+    message = message[2:]
+    message = int(message)
+    return message
+
 def send(msg):
     message = msg.encode(FORMAT)
     msg_length = len(message)
@@ -33,6 +38,10 @@ def send(msg):
     if server_message[0] == "C":
         color = parseColor()
         print(f'[RETURN] Color: {color}')
+    elif server_message[0]== "B":
+        brightness = parseBrightness()
+        moduleLed.setBrightness(brightness)
+            
         
 
 target_input = input()

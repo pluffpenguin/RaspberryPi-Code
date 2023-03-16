@@ -50,7 +50,7 @@ class ModuleLed:
         self.strip.show()
         
     def setBrightness(self, value):
-        self.setBrightness(value)
+        self.strip.setBrightness(value)
     
         
 
