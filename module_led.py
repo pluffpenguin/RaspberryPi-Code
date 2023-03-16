@@ -50,7 +50,9 @@ class ModuleLed:
         self.strip.show()
         
     def setBrightness(self, value):
+        print(f'[CLIENT] Setting Brightness to: {value}')
         self.strip.setBrightness(value)
+        self.strip.show()
     
         
 
