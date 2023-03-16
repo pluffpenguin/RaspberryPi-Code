@@ -12,7 +12,6 @@ from random import randint
 import time
 from time import sleep
 import datetime
-import numpy as np
 
 from rpi_ws281x_python import PixelStrip, Color
 
@@ -52,7 +51,9 @@ class ModuleLed:
         
     def setBrightness(self, value):
         print(f'[CLIENT] Setting Brightness to: {value}')
-        self.strip.setBrightness( np.abs(value) )
+        if value < 0: 
+            value = value*-1
+        self.strip.setBrightness()
         self.strip.show()
     
         
