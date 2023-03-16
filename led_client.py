@@ -23,6 +23,7 @@ def parseColor(message):
 
 def parseBrightness(message) -> int:
     message = message[2:]
+    message = message[:message.find("B:")]
     message = int(message)
     return message
 
@@ -36,10 +37,10 @@ def send(msg):
     server_message = client.recv(2048).decode(FORMAT)
     print(f'[SERVER_RESPONSE] {server_message}')
     if server_message[0] == "C":
-        color = parseColor()
+        color = parseColor(server_message)
         print(f'[RETURN] Color: {color}')
     elif server_message[0]== "B":
-        brightness = parseBrightness()
+        brightness = parseBrightness(server_message)
         moduleLed.setBrightness(brightness)
             
         
