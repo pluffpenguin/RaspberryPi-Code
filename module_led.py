@@ -44,8 +44,8 @@ class ModuleLed:
         self.strip.show()
     
     def setAllLeds(self, targetRGB: array):
+        targetColor = Color(targetRGB[0], targetRGB[1], targetRGB[2])
         for i in range(self.LED_COUNT):
-            targetColor = Color(targetRGB[0], targetRGB[1], targetRGB[2])
             self.strip.setPixelColor(i, targetColor)
         self.strip.show()
         

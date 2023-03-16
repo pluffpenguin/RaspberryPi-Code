@@ -19,6 +19,8 @@ client.connect(ADDR)
 def parseColor(message):
     message = message[2:]
     message = message.split(', ')
+    for i in range(0, len(message)):
+        message[i] = int(message[i])
     return message
 
 def parseBrightness(message) -> int:
@@ -30,8 +32,10 @@ def parseBrightness(message) -> int:
 def send(msg):
     message = msg.encode(FORMAT)
     msg_length = len(message)
+    
     send_length = str(msg_length).encode(FORMAT)
     send_length += b' ' * (HEADER - len(send_length))
+    
     client.send(send_length)
     client.send(message)
     server_message = client.recv(2048).decode(FORMAT)
@@ -39,6 +43,7 @@ def send(msg):
     if server_message[0] == "C":
         color = parseColor(server_message)
         print(f'[RETURN] Color: {color}')
+        moduleLed.setAllLeds(color)
     elif server_message[0]== "B":
         brightness = parseBrightness(server_message)
         moduleLed.setBrightness(brightness)
