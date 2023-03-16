@@ -23,9 +23,11 @@ def parseColor(message):
         message[i] = int(message[i])
     return message
 
-def parseBrightness(message) -> int:
+def parseBrightness(message):
     message = message[2:]
-    message = message[:message.find("B:")]
+    dupe_index = message.find("B:")
+    if dupe_index > 0:
+        message = message[:dupe_index]
     message = int(message)
     return message
 
