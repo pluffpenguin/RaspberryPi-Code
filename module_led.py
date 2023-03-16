@@ -53,7 +53,7 @@ class ModuleLed:
         print(f'[CLIENT] Setting Brightness to: {value}')
         if value < 0: 
             value = value*-1
-        self.strip.setBrightness()
+        self.strip.setBrightness(value)
         self.strip.show()
     
         
