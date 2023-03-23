@@ -64,9 +64,9 @@ class ModuleLed:
         self.endColor = color
         
         # get the rgb steps
-        rstep = int(color[0] - previousColor[0])/self.settings["maxSteps"]
-        gstep = int(color[1] - previousColor[1])/self.settings["maxSteps"]
-        bstep = int(color[2] - previousColor[2])/self.settings["maxSteps"]
+        rstep = int(color[0] - previousColor[0])
+        gstep = int(color[1] - previousColor[1])
+        bstep = int(color[2] - previousColor[2])
         
         # absolute value of steps
         allSteps = [rstep, gstep, bstep]
