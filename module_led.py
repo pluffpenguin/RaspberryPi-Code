@@ -33,7 +33,8 @@ SHIFT_TIMER = 0.1
 
 class ModuleLed:
     def __init__(self):
-        self.LED_COUNT = int( input("How many LED's?\n>") )
+        self.LED_COUNT = 192
+        # self.LED_COUNT = int( input("How many LED's?\n>") )
         self.strip = PixelStrip(
         self.LED_COUNT, LED_PIN, LED_FREQ_HZ, LED_DMA, LED_INVERT, LED_BRIGHTNESS)
         # Intialize the library (must be called once before other functions).

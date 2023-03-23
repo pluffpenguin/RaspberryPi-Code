@@ -7,8 +7,8 @@ HEADER = 64
 PORT = 5050
 FORMAT = 'utf-8'
 DISCONNECT_MESSAGE = "!DISCONNECT"
-# SERVER = "192.168.21.35"
-SERVER = str(input("[INPUT] What is the SERVER? "))
+SERVER = "192.168.162.35"
+# SERVER = str(input("[INPUT] What is the SERVER? "))
 ADDR = (SERVER, PORT)
 
 print("[CLIENT] Client Started! {ADDR}")
@@ -36,6 +36,8 @@ def parseBrightness(message):
 def send(msg):
     message = msg.encode(FORMAT)
     msg_length = len(message)
+    if msg_length == 0: 
+        return False
     
     send_length = str(msg_length).encode(FORMAT)
     send_length += b' ' * (HEADER - len(send_length))
