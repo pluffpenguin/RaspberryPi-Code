@@ -80,12 +80,12 @@ class ModuleLed:
             self.settings["currentSteps"] += 1
             # add to the target color
             for i in range(len(self.targetColor)):
-                self.targetColor[i] = self.targetColor[i] + allSteps[i]
+                self.targetColor[i] = previousColor[i] + allSteps[i]*self.settings["currentSteps"]/self.settings["maxSteps"]
             
             # local variable, turn targetColor to ints
-            stepColor = self.targetColor
-            for i in range(len(stepColor)):
-                stepColor[i] = int(stepColor[i])
+            stepColor = self.targetColor 
+            for i in range(len(stepColor)): 
+                stepColor[i] = int(stepColor[i]) 
             # set color to int converted stepColor
             try:
                 print(f'[ MODULE ]: The stepColor: {stepColor}, {type(stepColor[0])}')
