@@ -59,6 +59,6 @@ def send(msg):
 target_input = input()
 while target_input != DISCONNECT_MESSAGE:
     send(target_input)
-    target_input = input()
+    # target_input = input()
 
 send(DISCONNECT_MESSAGE)
