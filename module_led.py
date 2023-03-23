@@ -52,6 +52,8 @@ class ModuleLed:
         self.strip.show()
 
     def fadeColor(self, color):
+        if color == self.endColor:
+            return False
         # add event call or something idk
         if self.fadeFunction == True: 
             self.fadeFunction = False
