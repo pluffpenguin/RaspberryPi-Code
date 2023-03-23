@@ -1,5 +1,7 @@
 import socket
+import threading
 from module_led import ModuleLed
+
 
 HEADER = 64
 PORT = 5050
@@ -45,11 +47,11 @@ def send(msg):
     if server_message[0] == "C":
         color = parseColor(server_message)
         print(f'[RETURN] Color: {color}')
-        moduleLed.setAllLeds(color)
+        # moduleLed.setAllLeds(color)
+        moduleLed.fadeColor(color)
     elif server_message[0]== "B":
         brightness = parseBrightness(server_message)
         moduleLed.setBrightness(brightness)
-            
         
 
 target_input = input()
