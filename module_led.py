@@ -38,6 +38,7 @@ class ModuleLed:
         self.LED_COUNT, LED_PIN, LED_FREQ_HZ, LED_DMA, LED_INVERT, LED_BRIGHTNESS)
         # Intialize the library (must be called once before other functions).
         self.targetColor = [0, 0, 0]
+        self.endColor = [0, 0, 0]
         self.fadeFunction = None
         self.settings = {
             "maxSteps": 50,
@@ -57,8 +58,8 @@ class ModuleLed:
             time.sleep(1/10)
         self.fadeFunction = True
         # initialize color intervals
-        previousColor = self.targetColor
-        self.targetColor = color
+        previousColor = self.endColor
+        self.endColor = color
         
         # get the rgb steps
         rstep = int(color[0] - previousColor[0])/self.settings["maxSteps"]
@@ -73,7 +74,7 @@ class ModuleLed:
             
         # while loop to change the colors in the background
         self.settings["currentSteps"] = 0
-        while self.settings["currentSteps"] < self.settings["maxSteps"] and self.fadeFunction == True:
+        while self.fadeFunction == True and self.settings["currentSteps"] < self.settings["maxSteps"]:
             self.settings["currentSteps"] += 1
             # add to the target color
             for i in range(len(self.targetColor)):
@@ -85,7 +86,7 @@ class ModuleLed:
                 stepColor[i] = int(stepColor[i])
             # set color to int converted stepColor
             self.setAllLeds(stepColor)
-            time.sleep(SHIFT_TIMER) 
+            time.sleep(SHIFT_TIMER)
         
         self.settings["currentSteps"] = 0    
     
