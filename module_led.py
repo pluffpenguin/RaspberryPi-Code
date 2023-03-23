@@ -87,7 +87,11 @@ class ModuleLed:
             for i in range(len(stepColor)):
                 stepColor[i] = int(stepColor[i])
             # set color to int converted stepColor
-            self.setAllLeds(stepColor)
+            try:
+                print(f'[ MODULE ]: The stepColor: {stepColor}, {type(stepColor[0])}')
+                self.setAllLeds(stepColor)
+            except:
+                print(f"INT32 ERROR: {stepColor}")
             time.sleep(SHIFT_TIMER)
         
         self.settings["currentSteps"] = 0    
