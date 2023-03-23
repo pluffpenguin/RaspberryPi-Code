@@ -29,7 +29,7 @@ LED_BRIGHTNESS = 50  # Set to 0 for darkest and 255 for brightest
 # True to invert the signal (when using NPN transistor level shift)
 LED_INVERT = False
 
-SHIFT_TIMER = 0.1
+SHIFT_TIMER = 0.05
 class ModuleLed:
     def __init__(self):
         self.LED_COUNT = 192
@@ -40,7 +40,7 @@ class ModuleLed:
         self.targetColor = [0, 0, 0]
         self.fadeFunction = None
         self.settings = {
-            "maxSteps": 20,
+            "maxSteps": 50,
             "currentStep": 0
         }
         self.strip.begin()
@@ -77,9 +77,14 @@ class ModuleLed:
             self.settings["currentSteps"] += 1
             # add to the target color
             for i in range(len(self.targetColor)):
-                self.targetColor[i] = int(self.targetColor[i] + allSteps[i])
+                self.targetColor[i] = self.targetColor[i] + allSteps[i]
             
-            self.setAllLeds(self.targetColor)
+            # local variable, turn targetColor to ints
+            stepColor = self.targetColor
+            for i in range(len(stepColor)):
+                stepColor[i] = int(stepColor[i])
+            # set color to int converted stepColor
+            self.setAllLeds(stepColor)
             time.sleep(SHIFT_TIMER) 
         
         self.settings["currentSteps"] = 0    
